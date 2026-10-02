@@ -1,0 +1,92 @@
+/* Ripleytia Gothic Purple Theme */
+
+QMainWindow {
+    background-color: #121212;
+    color: #E0E0E0;
+}
+
+QWidget {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    background-color: #121212;
+    color: #E0E0E0;
+}
+
+QLabel {
+    color: #E0E0E0;
+}
+
+/* Yükleme Alanı */
+#DropZone {
+    background-color: #1E1E24;
+    border: 2px dashed #6B2D5C;
+    border-radius: 10px;
+    padding: 20px;
+}
+#DropZone:hover {
+    background-color: #2a2a35;
+    border: 2px dashed #9D4EDD;
+}
+#DropZone QLabel {
+    font-size: 16px;
+    color: #9D4EDD;
+    font-weight: bold;
+}
+
+/* Butonlar */
+QPushButton {
+    background-color: #6B2D5C;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #8A2BE2;
+}
+QPushButton:pressed {
+    background-color: #5c224f;
+}
+
+/* Combobox (Açılır Menü) */
+QComboBox {
+    background-color: #1E1E24;
+    border: 1px solid #6B2D5C;
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+}
+QComboBox:hover {
+    border: 1px solid #8A2BE2;
+}
+QComboBox::drop-down {
+    border: none;
+}
+QComboBox QAbstractItemView {
+    background-color: #1E1E24;
+    color: white;
+    selection-background-color: #6B2D5C;
+}
+
+/* Progress Bar */
+QProgressBar {
+    border: 1px solid #333;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #1E1E24;
+    color: white;
+}
+QProgressBar::chunk {
+    background-color: #9D4EDD;
+    border-radius: 5px;
+}
+
+/* Log Kutusu */
+QTextEdit {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    color: #a0a0a0;
+    font-family: "Consolas", monospace;
+    font-size: 12px;
+}

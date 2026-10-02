@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# PyInstaller
+build/
+dist/
+*.spec
+
+# Temp files
+assets/temp_thumbs/
+assets/temp_preview.jpg
+
+# OS
+.DS_Store
+Thumbs.db

@@ -54,9 +54,9 @@ class FFmpegWorker(QThread):
             cw, ch, cx, cy = self.manual_crop_data
             filters.append(f"crop={cw}:{ch}:{cx}:{cy}")
         else:
-            # Otomatik Ölçeklendirme ve Padding
+            # Otomatik Ölçeklendirme ve Kırpma (Tam Ekran Doldurma - No Black Bars)
             target_res = preset_map.get(self.resolution_preset, "1920:1080")
-            filters.append(f"scale={target_res}:force_original_aspect_ratio=decrease,pad={target_res}:(ow-iw)/2:(oh-ih)/2")
+            filters.append(f"scale={target_res}:force_original_aspect_ratio=increase,crop={target_res}")
         
         # Format sabitleme (Renk uzayı uyumluluğu için)
         filters.append("format=yuv420p")

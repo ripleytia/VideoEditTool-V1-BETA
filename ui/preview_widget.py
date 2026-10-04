@@ -113,31 +113,37 @@ class VideoPreviewWidget(QWidget):
                 painter.setPen(QColor("white"))
                 painter.drawText(result_pixmap.rect(), Qt.AlignmentFlag.AlignCenter, "Manuel Kırpma: Fareyle Alan Çizin")
 
-        # --- OTOMATİK ASPECT RATIO SİMÜLASYONU ---
+        # --- OTOMATİK ASPECT RATIO SİMÜLASYONU (CROP TO FILL) ---
         elif self.target_aspect_ratio:
             tw, th = self.target_aspect_ratio
             target_ratio = tw / th
             current_ratio = pix_w / pix_h
             
+            # Crop to Fill mantığı: Görüntü ekrana sığdırıldığında dışarı taşan kısımları keseceğiz.
             if current_ratio > target_ratio:
-                # Kırpma / Crop simulasyonu
-                box_w = min(pix_w, pix_h * target_ratio)
-                box_h = min(pix_h, pix_w / target_ratio)
+                # Orijinal daha geniş (Örn: 16:9 videoyu 9:16 yapmak). Yanlardan kırpılacak.
+                box_w = pix_h * target_ratio
+                box_h = pix_h
+            else:
+                # Orijinal daha uzun (Örn: 9:16 videoyu 16:9 yapmak). Üstten ve alttan kırpılacak.
+                box_w = pix_w
+                box_h = pix_w / target_ratio
                 
-                x = offset_x + (pix_w - box_w) / 2
-                y = offset_y + (pix_h - box_h) / 2
-                
-                painter.setBrush(QColor(0, 0, 0, 180))
-                painter.setPen(Qt.PenStyle.NoPen)
-                # Dışarıda kalanları karart
-                painter.drawRect(offset_x, offset_y, int(x - offset_x), pix_h) # Sol
-                painter.drawRect(int(x + box_w), offset_y, int((offset_x + pix_w) - (x+box_w)), pix_h) # Sağ
-                painter.drawRect(offset_x, offset_y, pix_w, int(y - offset_y)) # Üst
-                painter.drawRect(offset_x, int(y + box_h), pix_w, int((offset_y + pix_h) - (y+box_h))) # Alt
-                
-                painter.setBrush(Qt.BrushStyle.NoBrush)
-                painter.setPen(QPen(QColor("#9D4EDD"), 3))
-                painter.drawRect(int(x), int(y), int(box_w), int(box_h))
+            x = offset_x + (pix_w - box_w) / 2
+            y = offset_y + (pix_h - box_h) / 2
+            
+            painter.setBrush(QColor(0, 0, 0, 180))
+            painter.setPen(Qt.PenStyle.NoPen)
+            # Dışarıda kalanları karart (Kesilecek alanlar)
+            painter.drawRect(offset_x, offset_y, int(x - offset_x), pix_h) # Sol
+            painter.drawRect(int(x + box_w), offset_y, int((offset_x + pix_w) - (x+box_w)), pix_h) # Sağ
+            painter.drawRect(offset_x, offset_y, pix_w, int(y - offset_y)) # Üst
+            painter.drawRect(offset_x, int(y + box_h), pix_w, int((offset_y + pix_h) - (y+box_h))) # Alt
+            
+            # Merkeze odaklanacak alanı (Fill Area) çerçeve içine al
+            painter.setBrush(Qt.BrushStyle.NoBrush)
+            painter.setPen(QPen(QColor("#9D4EDD"), 3))
+            painter.drawRect(int(x), int(y), int(box_w), int(box_h))
 
         painter.end()
         self.image_label.setPixmap(result_pixmap)

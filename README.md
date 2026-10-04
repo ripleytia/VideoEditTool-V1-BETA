@@ -16,7 +16,7 @@ Sıradan "video dönüştürücülerden" farklı olarak; donanım hızlandırma 
 * 🚀 **Gelişmiş Render Motoru:** NVIDIA NVENC ve AMD AMF donanım hızlandırma destekli FFmpeg entegrasyonu (Süreç CPU'yu yormadan 10 kata kadar daha hızlı tamamlanır).
 * 🎞️ **Film Şeridi (Timeline) Kesme Aracı:** Videoyu yüklediğiniz anda FFmpeg arka planda saniyeler içinde 10 adet kare çeker ve özel tasarlanmış Timeline'a film şeridi olarak dizer. Hangi saniyeyi kestiğinizi görsel olarak görebilirsiniz.
 * 📐 **Otomatik ve Manuel Boyutlandırma:** 
-  * Hazır şablonlarla (TikTok 9:16, YouTube 16:9, Oyun 2K, Sinema 4K) tek tıkla profesyonel boyutlandırma.
+  * Hazır şablonlarla (TikTok 9:16, YouTube 16:9, Oyun 2K, Sinema 4K) tek tıkla profesyonel boyutlandırma. Siyah barlar oluşmaz; **"Crop-to-Fill" (Tam Ekran Doldurma)** mantığıyla videonun merkezi alınarak dışarı taşan alanlar kusursuzca kesilir.
   * **Manuel Serbest Kırpma:** Farenizle önizleme ekranına dikdörtgen çizerek videonun sadece o bölgesini kesip alabilirsiniz (Crop). Önizleme ekranı, videonun neresinin kesileceğini simüle eder.
 * 🎨 **Görsel Efektler ve Renk Filtreleri:** Sinematik (Kontrast+), Canlı (Doygunluk+), Matrix (Soğuk), Güneşli (Sıcak), Bulanık (Glow), Siyah Beyaz ve Vintage (Sepya) gibi tek tıkla uygulanabilir `colorchannelmixer` tabanlı donanımsal renk filtreleri.
 * 🛡️ **Profesyonel Ekstralar:** Çıktılarınıza anında Ripleytia Filigranı (Sağ Alt Köşe) ekleyebilir veya videonun sesini (`-an` parametresi ile) tamamen kapatabilirsiniz.
